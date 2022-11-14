@@ -1,7 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-        testo: '',
+        text: '',
         
         todoList: [],
 
@@ -9,10 +9,10 @@ var app = new Vue({
     },
 
     beforeUpdate(){
-        this.todoList.forEach((element) =>{
+        this.todoList.forEach((element,index) =>{
             if(element.done == true){
                 this.todoCompleted.push(element);
-                this.todoList.splice(element,1)
+                this.todoList.splice(index,1)
             }
         })
     },
@@ -26,7 +26,7 @@ var app = new Vue({
             }
         },
 
-        taskCompleted(element, x){
+        taskCompleted(element){
 
             if(element.done == false){
                 element.done = true;
@@ -35,12 +35,14 @@ var app = new Vue({
             }
         },
         
-        newTask(testo){
+        newTask(){
             let task = {
-                text: testo,
+                text: this.text,
                 done: false
             }
             this.todoList.push(task)
+            this.text = ''; 
         }
+        
     }
 })
