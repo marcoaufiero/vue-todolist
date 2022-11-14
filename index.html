@@ -20,12 +20,13 @@
             </div>
             
             <div class="p-3 my-3">
-                <ul class="list-group list-group-flush">
+                <ul v-if="todoList.length > 0" class="list-group list-group-flush">
                     <li v-for="(element, x) in todoList" :key="x" class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>{{element.text}}</span>
-                        <i class="fa-solid fa-xmark text-danger"></i>
+                        <span @click="taskCompleted(element, x)" :class="(element.done == true) ? 'text-decoration-line-through' : '' " >{{element.text}}</span>
+                        <i @click="removeTask(element, x)" class="fa-solid fa-xmark text-danger"></i>
                     </li>
                 </ul>
+                <h2 v-else>La TODO list è vuota</h2>
             </div>
         
         

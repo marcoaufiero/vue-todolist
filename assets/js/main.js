@@ -17,7 +17,22 @@ var app = new Vue({
     },
 
     methods:{
-        
+        removeTask(element, x){
+            if(element.done == true){
+                this.todoCompleted.splice(x,1)
+            }else{
+                this.todoList.splice(x,1)
+            }
+        },
+
+        taskCompleted(element, x){
+
+            if(element.done == false){
+                element.done = true;
+            }else{
+                element.done = false
+            }
+        }
         
     }
 })
