@@ -15,7 +15,7 @@
 
         <div class="container pt-5">
             <div class="d-flex justify-content-center align-items-center">
-                <input v-model="text" type="text" placeholder="Add new task">
+                <input v-model="text" @keyup.enter="newTask()" type="text" placeholder="Add new task">
                 <button @click="newTask()" class="btn btn-primary ms-3">New TODO</button>
             </div>
             
