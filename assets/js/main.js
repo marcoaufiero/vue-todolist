@@ -1,19 +1,20 @@
 var app = new Vue({
     el: '#app',
     data: {
-  
-        todoList: [
-            {
-                text: 'Comprare la farina',
-                done: false
-            },
-            {
-                text: 'Aggiustare la mensola in cucina',
-                done: false
-            }
-        ],
+        testo: '',
+        
+        todoList: [],
 
         todoCompleted: []
+    },
+
+    beforeUpdate(){
+        this.todoList.forEach((element) =>{
+            if(element.done == true){
+                this.todoCompleted.push(element);
+                this.todoList.splice(element,1)
+            }
+        })
     },
 
     methods:{
@@ -32,7 +33,14 @@ var app = new Vue({
             }else{
                 element.done = false
             }
-        }
+        },
         
+        newTask(testo){
+            let task = {
+                text: testo,
+                done: false
+            }
+            this.todoList.push(task)
+        }
     }
 })

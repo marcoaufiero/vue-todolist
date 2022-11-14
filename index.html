@@ -1,4 +1,4 @@
-|<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,10 +13,10 @@
     
     <div id="app">
 
-        <div class="container">
+        <div class="container pt-5">
             <div class="d-flex justify-content-center align-items-center">
-                <input type="text" placeholder="Add new task">
-                <button class="btn btn-primary ms-3">New TODO</button>
+                <input v-model="testo" type="text" placeholder="Add new task">
+                <button @click="newTask(testo)" class="btn btn-primary ms-3">New TODO</button>
             </div>
             
             <div class="p-3 my-3">
@@ -29,6 +29,17 @@
                 <h2 v-else>La TODO list è vuota</h2>
             </div>
         
+            <div class="p-3">
+                <h2>Task Completate</h2>
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li v-for="(element, x) in todoCompleted" :key="x" class="list-group-item d-flex justify-content-between align-items-center">
+                            <span :class="(element.done == true) ? 'text-decoration-line-through' : '' " >{{element.text}}</span>
+                            <i @click="removeTask(element, x)" class="fa-solid fa-xmark text-danger"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         
         
         
